@@ -1,0 +1,32 @@
+<ion-view class="background">
+      <ion-content class="padding" overflow-scroll="false">
+            <div class="row row-center espace-icon-login">
+              <div class="col col-100 text-center">
+                <img src="img/logo.jpg" class="imagelogo">
+                <h3 class="titre-login">CHESSFAMILY</h3>
+              </div>
+            </div>
+            <div class="list">
+
+                  <label class="item item-input input-login">
+                    <i class="icon ion-email placeholder-icon icon-login"></i>
+                      <!-- modifier par hosni-->
+                    <input type="text" placeholder="Email" id="email" ng-model="loginparams.email" >
+                  </label>
+                  <label class="item item-input input-login">
+                    <i class="icon ion-locked placeholder-icon icon-login"></i>
+                      <!-- modifier par hosni-->
+                    <input type="password" class="form-control" placeholder="Password" id="password" ng-model="loginparams.password" >
+                  </label>
+                  <!--<ion-checkbox ng-model="filter.yellow" class="checkbox-login">Remember Me</ion-checkbox>-->
+                 <a ui-sref="menu.profile">
+              <!-- modifier par hosni-->
+                 <button ng-click="memberConnect()" class="button button-block btn-login">Login with Email 2</button>
+                </a>
+            </div>
+
+            <a ui-sref="register">
+                <h6 class="titre-login text-center">NEW ? SIGN UP HERE</h6>
+            </a>
+      </ion-content>
+    </ion-view>

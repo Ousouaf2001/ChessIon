@@ -1,0 +1,120 @@
+<ion-side-menus>
+  <!-- Left menu -->
+  
+    <ion-side-menu side="left">
+            <ion-view class="background">
+              <ion-content class="padding" overflow-scroll="false">
+                    <div class="row row-center espace-icon-login">
+                      <div class="col col-100 text-center">
+                        <img src="img/avatar.png" class="imageprofile">
+                        <h4 class="titre-login">Dridi Lotfi</h4>   
+                      </div>
+                    </div>
+                    <div class="list menu-gauche">
+
+                      <a menu-close class="item item-icon-left" ui-sref="menu.notification">
+                        <i class="icon ion-ios-game-controller-b"></i>
+                        My Notifications
+                        <span class="badge badge-assertive">0</span>
+                      </a>
+                      <a menu-close class="item item-icon-left" ui-sref="menu.publication">
+                        <i class="icon ion-android-share-alt"></i>
+                        My Publications
+                        <span class="badge badge-assertive">0</span>
+                      </a>
+                      <a menu-close class="item item-icon-left" ui-sref="menu.meetingPlace">
+                        <i class="icon ion-map"></i>
+                        My Meeting Places
+                        <span class="badge badge-assertive">0</span>
+                      </a>
+                      <a menu-close class="item item-icon-left" ui-sref="menu.event">
+                        <i class="icon ion-wineglass"></i>
+                        My Events
+                        <span class="badge badge-assertive">0</span>
+                      </a>
+                      <a menu-close class="item item-icon-left" ui-sref="menu.myfriends">
+                        <i class="icon ion-ios-people"></i>
+                        My Friends
+                        <span class="badge badge-assertive">0</span>
+                      </a>
+                      <a menu-close class="item item-icon-left" ui-sref="menu.myfavorite">
+                        <i class="icon ion-android-favorite"></i>
+                        My Favorites
+                      </a>
+                      <a menu-close class="item item-icon-left" ui-sref="menu.profile">
+                        <i class="icon ion-person"></i>
+                        My Profiles
+                      </a>
+                      <a menu-close class="item item-icon-left" ui-sref="menu.faq">
+                        <i class="icon ion-help-circled"></i>
+                        FAQ
+                      </a>
+                      <a menu-close class="item item-icon-left" ui-sref="menu.setting">
+                        <i class="icon ion-wrench"></i>
+                        Settings
+                      </a>
+                      <a menu-close class="item item-icon-left" ui-sref="menu.privacy">
+                        <i class="icon ion-ios-pricetag"></i>
+                        Privacy
+                      </a>
+                      <a menu-close class="item item-icon-left" ui-sref="login">
+                        <i class="icon ion-log-out"></i>
+                        Logout
+                      </a>
+                    </div>
+              </ion-content>
+                
+            </ion-view>
+  </ion-side-menu>
+  <ion-side-menu-content >
+        <ion-nav-bar class="bar-positive headertop">
+            <ion-nav-buttons side="left">
+                <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+            </ion-nav-buttons>
+            <ion-nav-buttons side="right">
+                <button  class="button button-icon icon ion-android-search" ng-click="popover.show($event)"></button>
+            </ion-nav-buttons>
+         </ion-nav-bar>
+        <ion-nav-view name="side-menu21"></ion-nav-view>
+      <ion-footer-bar class="bar bar-footer footer">
+      <div class="tabs tabs-positive  footertop">
+          <a menu-close class="tab-item" ui-sref="login">
+            <i class="icon ion-ios-home"></i>
+              
+          </a>
+          <a menu-close class="tab-item" ui-sref="menu.profile">
+            <i class="icon ion-chatboxes"></i>
+              
+          </a>
+          <a menu-close class="tab-item" ui-sref="menu.notification">
+            <i class="icon ion-ios-bell"></i>
+              
+          </a>
+          <a menu-close class="tab-item" ui-sref="config">
+            <i class="icon ion-ios-location"></i>
+              
+          </a>
+      </div>
+    <div class="buttons btn-add-publication" style="display:none;">
+        <button class="button button-icon icon ion-plus-round" style="color: white;"></button>
+    </div>
+    <div class="buttons btn-add-meeting" style="display:none;">
+        <button class="button button-icon icon ion-plus-round" style="color: white;"></button>
+    </div>
+    <div class="buttons btn-add-event" style="display:none;">
+        <button class="button button-icon icon ion-plus-round" style="color: white;"></button>
+    </div>
+    <div class="buttons btn-add">
+        <button class="button button-icon icon ion-plus-round" style="color: white;"></button>
+    </div>
+      </ion-footer-bar>
+  </ion-side-menu-content>
+    
+    
+</ion-side-menus>
+
+
+
+
+
+    

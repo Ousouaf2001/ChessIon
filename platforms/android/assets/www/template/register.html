@@ -1,0 +1,52 @@
+<ion-view class="background">
+      <ion-content class="padding" overflow-scroll="false">
+            <div class="row row-center espace-icon-login">
+              <div class="col col-100 text-center">
+                <img src="img/logo.jpg" class="imagelogo">
+                <h3 class="titre-login">CHESSFAMILY</h3>
+                <h4 class="titre-login">Register</h4>      
+              </div>
+            </div>
+            <div class="list">
+              <label class="item item-input input-login">
+                <i class="icon ion-person placeholder-icon icon-login"></i>
+                <input type="text" placeholder="Name" ng-model="name">
+              </label>
+              <label class="item item-input input-login">
+                <i class="icon ion-person placeholder-icon icon-login"></i>
+                <input type="text" placeholder="Last Name" ng-model="last_name">
+              </label>
+              <label class="item item-input input-login">
+                <i class="icon ion-email placeholder-icon icon-login"></i>
+                <input type="text" placeholder="Email" ng-model="email">
+              </label>
+              <label class="item item-input input-login">
+                <i class="icon ion-locked placeholder-icon icon-login"></i>
+                <input type="password" placeholder="Password" ng-model="password">
+              </label>
+              <label class="item item-input input-login">
+                <i class="icon ion-locked placeholder-icon icon-login"></i>
+                <input type="password" placeholder="Confirm Password" ng-model="password_conf">
+              </label>
+              <label class="item item-input input-login">
+                <i class="icon ion-ios-calendar placeholder-icon icon-login"></i>
+                <input type="date" placeholder="Password" ng-model="birthday">
+              </label>
+              <label class="item item-input item-select input-login">
+                <i class="icon ion-transgender placeholder-icon icon-login"></i>
+                <div class="input-label">
+                  Lightsaber
+                </div>
+                <select ng-model="genre">
+                  <option value="0">Blue</option>
+                  <option value="1">Green</option>
+                </select>
+              </label>
+              
+              <button class="button button-block btn-login" ng-click="memberAdd()">Sign up with Email</button>
+            </div>
+            <a ui-sref="login">
+                <h6 class="titre-login text-center">RETURN TO LOGIN</h6>
+            </a>
+      </ion-content>
+    </ion-view>
