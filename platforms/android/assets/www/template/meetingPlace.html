@@ -1,29 +1,20 @@
 <ion-view class="background" title="My Meeting Place">
     <ion-content padding="true">
         
-        <ion-list class="list-notification">
-            <a ui-sref="menu.placeDescription">
-                <ion-item class="item-icon-right item-avatar">
-                    <img src="img/avatar.png">
-                    <h2>Dridi Lotfi</h2>
-                    <p>Back off, man. I'm a scientist.</p>
-                    <i class="icon ion-chevron-left"></i>
+        <ion-list class="list-notification" ng-repeat="meeting in meet">
+            
+                <ion-item class="item-icon-right item-avatar" >
+                    <img src="{{meeting.image}}" ui-sref="menu.placeDescription">
+                    <h2>{{meeting.name}}</h2>
+                    <p>{{meeting.adresse}}</p>
+                    <i class="icon ion-grid"></i>
                     <ion-option-button class="button button-assertive">
-                        <i class="icon ion-trash-b"></i>
+                    <i class="icon ion-trash-b" ng-click="deleteMeeting(meeting.id)"></i>
+                    </ion-option-button>
+                    <ion-option-button class="button button-calm">
+                        <i class="icon ion-edit"></i>
                     </ion-option-button>
                 </ion-item>
-            </a>
-            <a ui-sref="menu.placeDescription">
-                <ion-item class="item-icon-right item-avatar">
-                    <img src="img/avatar.png">
-                    <h2>Dridi Lotfi</h2>
-                    <p>Back off, man. I'm a scientist.</p>
-                    <i class="icon ion-chevron-left"></i>
-                    <ion-option-button class="button button-assertive">
-                        <i class="icon ion-trash-b"></i>
-                    </ion-option-button>
-                </ion-item>
-            </a>
         </ion-list>
         
     </ion-content>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/var/www/html/ChessIon/platforms/android/build/intermediates/exploded-aar/android/CordovaLib/unspecified/debug/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="3ad76dcde0f39719f78e9e54d88c28c6801a10e4">
+        <dex dex="/var/www/html/ChessIon/platforms/android/build/intermediates/pre-dexed/debug/CordovaLib-unspecified-debug_9fccdc5703e1df8c43a48b0c1cf1180c29b66c2b.jar" />
+    </item>
+
+</items>

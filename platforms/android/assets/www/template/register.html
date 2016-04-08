@@ -8,42 +8,40 @@
               </div>
             </div>
             <div class="list">
+            <form name="registerForm">
               <label class="item item-input input-login">
                 <i class="icon ion-person placeholder-icon icon-login"></i>
-                <input type="text" placeholder="Name" ng-model="name">
-              </label>
-              <label class="item item-input input-login">
-                <i class="icon ion-person placeholder-icon icon-login"></i>
-                <input type="text" placeholder="Last Name" ng-model="last_name">
+                <input type="text" placeholder="Name" ng-model="registerparams.name" required>
               </label>
               <label class="item item-input input-login">
                 <i class="icon ion-email placeholder-icon icon-login"></i>
-                <input type="text" placeholder="Email" ng-model="email">
+                <input type="text" placeholder="Email" ng-model="registerparams.email" required>
               </label>
               <label class="item item-input input-login">
                 <i class="icon ion-locked placeholder-icon icon-login"></i>
-                <input type="password" placeholder="Password" ng-model="password">
+                <input type="password" placeholder="Password" ng-model="registerparams.password" required>
               </label>
               <label class="item item-input input-login">
                 <i class="icon ion-locked placeholder-icon icon-login"></i>
-                <input type="password" placeholder="Confirm Password" ng-model="password_conf">
+                <input type="password" placeholder="Confirm Password" ng-model="registerparams.password_conf" required>
               </label>
               <label class="item item-input input-login">
                 <i class="icon ion-ios-calendar placeholder-icon icon-login"></i>
-                <input type="date" placeholder="Password" ng-model="birthday">
+                <input type="date" placeholder="Birthday" ng-model="registerparams.birthday" required>
               </label>
               <label class="item item-input item-select input-login">
                 <i class="icon ion-transgender placeholder-icon icon-login"></i>
                 <div class="input-label">
-                  Lightsaber
+                  Sexe
                 </div>
-                <select ng-model="genre">
-                  <option value="0">Blue</option>
-                  <option value="1">Green</option>
+                <select ng-model="registerparams.gender" required>
+                  <option value="1">Homme</option>
+                  <option value="2">Femme</option>
                 </select>
               </label>
               
-              <button class="button button-block btn-login" ng-click="memberAdd()">Sign up with Email</button>
+              <button class="button button-block btn-login" ng-click="memberAdd()" ng-disabled="registerForm.$invalid || registerForm.$pending">Sign up with Email</button>
+              </form>
             </div>
             <a ui-sref="login">
                 <h6 class="titre-login text-center">RETURN TO LOGIN</h6>

@@ -1,35 +1,68 @@
 <ion-view class="background" title="Profile">
-    <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
-    <div class="tabs">
-      <a class="tab-item" href="#">
-        <i class="icon ion-home"></i>
-        
-      </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-star"></i>
-        <ion-content>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>  
-        </ion-content>
-      </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-gear-a"></i>
-        
-      </a>
-        <a class="tab-item" href="#">
-        <i class="icon ion-home"></i>
-        
-      </a>
+        <ion-header-bar class="bar-positive">
+          <h1 class="title">Parallax Profile</h1>
+          <div class="buttons">
+            <a href="https://github.com/kevincobain2000/ionic-parallax-profile" class="button button-icon ion-social-github">
+            </a>
+          </div>
+        </ion-header-bar>
+    <ion-content overflow-scroll='false' delegate-handle="userDetailContent" header-shrink scroll-event-interval="5">
+      <div class="about-header">
+          <ion-slide-box auto-play="false" show-pager="false">
+            <ion-slide data-ng-repeat="i in ['people','food','sports']">
+            <div class="profile-media">
+              <div class="profile-details">
+                <img  ng-src="http://lorempixel.com//400/500/{{i}}" class="img-circle profile-image">
+                <h5 class="color-white">
+                  {{i}}
+                </h5>
+                <p>
+                  Some thing About
+                </p>
+              </div>
+              <img ng-src="http://lorempixel.com/400/500/{{i}}" class="about-image profile-background-image" style="vertical-align:middle;">
+            </div>
+            </ion-slide>
+          </ion-slide-box>
+        <div class="row like-btn">
+          <div class="col text-right">
+            <div ng-class="liked bg-color-white like-button">
+              <i class="ion-heart"></i>
+            </div>
+              
+          </div>
+            
+        </div>
+          
     </div>
-  </div>
-    <ion-content padding="true">
-        
-    </ion-content>
+    <div class="content-block">
+      <div class="content-block-inner">
+        <p class="card padding">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p class="card padding">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p class="card padding">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+    </div>
+  </ion-content>
     
 </ion-view>

@@ -20,78 +20,79 @@ app=angular.module('starter', ['ionic','ngCordova'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    
+    
       
   });
+    
+    
 })
-.controller('AppCtrl', function($scope, $ionicPopover, $http, $interval) {
+.controller('AppCtrl', function($scope, $ionicPopover, $http, $ionicModal,$state,$ionicPopup) {
 
+   
+    
+    // modals
+    $ionicModal.fromTemplateUrl('template/modalactivity.html', function(modal){
+      $scope.activity = modal;
+    }, {
+      scope:$scope,
+      animation:'slide-in-up',
+    });
+    
+    $ionicModal.fromTemplateUrl('template/modalfriend.html', function(modal){
+      $scope.friend = modal;
+    }, {
+      scope:$scope,
+      animation:'slide-in-up',
+    });
+    
+    $scope.openactivity = function(){
+        $scope.activity.show();   
+    };
+    
+    $scope.closeactivity = function(){
+        $scope.activity.hide();   
+    };
+    
+    $scope.openfriend = function(){
+        $scope.friend.show();   
+    };
+    
+    $scope.closefriend = function(){
+        $scope.friend.hide();   
+    };
+    
     $ionicPopover.fromTemplateUrl('template/popover.html', {
       scope: $scope,
     }).then(function(popover) {
       $scope.popover = popover;
     });
     
-    $scope.pub=[
-        
-    ];
-    
-    //$scope.identifiant = localStorage.getItem('identifiant');
-    
-    var affichePublications=function(){
-    
-    $http.post("http://api.chessfamily.net/api/query",
-            {
-                    authentication:"chessfemily",
-					action:"member_publications",
-					member_id:4,
-					perpage:10,
-					page:1
-            }
-        ).success(function(response){ 
-            
-            if($scope.pub.length < response.nb_total){
-                 console.log("test ",response.nb_total);
-                 $scope.pub = [];
-                   for(var i=$scope.pub.length;i<(response.nb_total);i++){
-                      $scope.pub.push({id:response.publications[i].id,date:response.publications[i].date}); 
-                    }
-            }else if($scope.pub.length>response.nb_total){
-                console.log("test1 ",response.nb_total);
-                $scope.pub = [];
-                for(var i=$scope.pub.length;i<(response.nb_total);i++){
-                    $scope.pub.push({id:response.publications[i].id,date:response.publications[i].date});  
-                   
-                } 
-            }
-         })
-         .error(function(response){
-            console.log(response);
-         });
-        
-        
-    }
-    affichePublications();
-    setInterval(affichePublications,2000);
-    
-    
-    
-    
-    $scope.loginparams={};//Modification par hosni
 
+    // member connect
+    $scope.loginparams={};
     $scope.memberConnect = function() {
-
-
         $http.post("http://api.chessfamily.net/api/query",{
             authentication:'chessfemily',
             action:'member_connect',
-            email: $scope.loginparams.email, //Modification par hosni
-            password: $scope.loginparams.password //Modification par hosni
+            email: $scope.loginparams.email,
+            password: $scope.loginparams.password
 
         },{
 
         })
         .success(function(response) {
-            localStorage.setItem("identifiant", response.member.id);
+            if(response.success == 1){
+                localStorage.setItem('identifiant',response.member.id);
+                $state.go('menu.profile');
+            }else{
+              var alertPopup = $ionicPopup.alert({
+                title: 'Login failed!',
+                template: 'Please check your credentials!'
+              });
+            }
+            
         })
         .error(function(response){
             console.log(response);
@@ -99,22 +100,20 @@ app=angular.module('starter', ['ionic','ngCordova'])
  
     };
     
-    
-    
-    
-    
+
+    // member register
     $scope.registerparams={};
     $scope.memberAdd = function(){
         
         $http.post("http://api.chessfamily.net/api/query",
             {
                     authentication:"chessfemily",
-					action:"member_add",
-					name:$scope.registerparams.name,
-					email:$scope.registerparams.email,
-					password:$scope.registerparams.password,
-					birthday:$scope.registerparams.birthday,
-					gender:$scope.registerparams.gender
+          action:"member_add",
+          name:$scope.registerparams.name,
+          email:$scope.registerparams.email,
+          password:$scope.registerparams.password,
+          birthday:$scope.registerparams.birthday,
+          gender:$scope.registerparams.gender
             }
         )
         .success(function(response) {
@@ -127,16 +126,218 @@ app=angular.module('starter', ['ionic','ngCordova'])
         
     };
     
+    // publication list angularJs
+    $scope.pub=[
+        
+    ];
     
+    
+    //publication show
+    var affichePublications=function(){
+    $scope.identifiant = localStorage.getItem('identifiant');
+    $http.post("http://api.chessfamily.net/api/query",
+            {
+          authentication:"chessfemily",
+          action:"member_publications",
+          member_id:$scope.identifiant,
+          perpage:10,
+          page:1
+            }
+        ).success(function(response){ 
+            
+
+            
+            if($scope.pub.length < response.nb_total){
+                 $scope.pub = [];
+                   for(var i=$scope.pub.length;i<(response.nb_total);i++){
+                      $scope.pub.push({
+                                      id:response.publications[i].id,
+                                      date:response.publications[i].date,
+                                      texte:response.publications[i].formatted_text,
+                                    }); 
+                      
+                    }
+            }else if($scope.pub.length>response.nb_total){
+                $scope.pub = [];
+                for(var i=$scope.pub.length;i<(response.nb_total);i++){
+                    $scope.pub.push({
+                                    id:response.publications[i].id,
+                                    date:response.publications[i].date,
+                                    texte:response.publications[i].formatted_text
+                                  });  
+                   
+                } 
+            }
+         })
+         .error(function(response){
+            console.log(response);
+         });
+        
+        
+    }
+    affichePublications();
+    setInterval(affichePublications,2000);
+
+
+    // delete publication
+    $scope.deletePublication = function(id){
+        $http.post("http://api.chessfamily.net/api/query",
+            {
+              authentication:"chessfemily",
+              action:"member_publication_delete",
+              member_id:localStorage.getItem('identifiant'),
+              publication_id:id
+            }
+        )
+        .success(function(response) {
+            console.log(response);
+        })
+        .error(function(response){
+            console.log(response);
+        });
+    };
+
+
+    // notification list
+    $scope.notif=[
+        
+    ];
+
+    //notification show
+    var afficheNotification=function(){
+    $scope.identifiant = localStorage.getItem('identifiant');
+    $http.post("http://api.chessfamily.net/api/query",
+            {
+          authentication:"chessfemily",
+          action:"notifications",
+          member_id:$scope.identifiant,
+          perpage:10,
+          page:1
+            }
+        ).success(function(response){ 
+            
+
+            
+            if($scope.notif.length < response.nb_total){
+                 $scope.notif = [];
+                   for(var i=$scope.notif.length;i<(response.nb_total);i++){
+                      $scope.notif.push({
+                                      name:response.notifications[i].sender_name,
+                                      lastname:response.notifications[i].sender_last_name,
+                                      date:response.notifications[i].date,
+                                      texte:response.notifications[i].message,
+                                      image:response.notifications[i].sender_photo
+                                    }); 
+                      
+                    }
+            }else if($scope.notif.length>response.nb_total){
+                $scope.notif = [];
+                for(var i=$scope.notif.length;i<(response.nb_total);i++){
+                    $scope.notif.push({
+                                    name:response.notifications[i].sender_name,
+                                      lastname:response.notifications[i].sender_last_name,
+                                      date:response.notifications[i].date,
+                                      texte:response.notifications[i].message,
+                                      image:response.notifications[i].sender_photo
+                                  });  
+                   
+                } 
+            }
+         })
+         .error(function(response){
+            console.log(response);
+         });
+        
+        
+    }
+    afficheNotification();
+    setInterval(afficheNotification,2000);
+
+
+    // notification list
+    $scope.meet=[
+        
+    ];
+
+    //notification show
+    var afficheMeetingPlace=function(){
+    $scope.identifiant = localStorage.getItem('identifiant');
+    $http.post("http://api.chessfamily.net/api/query",
+            {
+          authentication:"chessfemily",
+          action:"member_meeting_places",
+          member_id:$scope.identifiant,
+          perpage:20,
+          page:1
+            }
+        ).success(function(response){ 
+            
+
+            
+            if($scope.meet.length < response.nb_total){
+                 $scope.meet = [];
+                   for(var i=$scope.meet.length;i<(response.nb_total);i++){
+                      $scope.meet.push({
+                                      name:response.meeting_places[i].name,
+                                      adresse:response.meeting_places[i].adress,
+                                      image:response.meeting_places[i].type_image
+                                    }); 
+                      
+                    }
+            }else if($scope.meet.length>response.nb_total){
+                $scope.meet = [];
+                for(var i=$scope.meet.length;i<(response.nb_total);i++){
+                    $scope.meet.push({
+                                      name:response.meeting_places[i].name,
+                                      adresse:response.meeting_places[i].adress,
+                                      image:response.meeting_places[i].type_image
+                                  });  
+                   
+                } 
+            }
+         })
+         .error(function(response){
+            console.log(response);
+         });
+        
+        
+    }
+    setInterval(afficheMeetingPlace,4000);
+
+    // delete meeting place
+    $scope.deleteMeeting = function(id){
+        $http.post("http://api.chessfamily.net/api/query",
+            {
+              authentication:"chessfemily",
+              action:"meeting_place_delete",
+              member_id:localStorage.getItem('identifiant'),
+              meeting_place_id:id
+            }
+        )
+        .success(function(response) {
+            console.log(response);
+        })
+        .error(function(response){
+            console.log(response);
+        });
+    };
 
 });
 
+
+    
+
+
+
+
+
+
+// routers
 app.config(function($stateProvider, $urlRouterProvider){
     $stateProvider.state("login", {
         url:"/login",
         templateUrl:"template/login.html"
     });
-    
     $stateProvider.state("register", {
         url:"/register",
         templateUrl:"template/register.html"
@@ -156,8 +357,6 @@ app.config(function($stateProvider, $urlRouterProvider){
         }
       }
     });
-    
-    
     $stateProvider.state('menu.geo', {
       url: '/geo',
       views: {
@@ -210,7 +409,7 @@ app.config(function($stateProvider, $urlRouterProvider){
       url: '/myfriends',
       views: {
         'side-menu21': {
-          templateUrl: 'template/myFriends.html'
+          templateUrl: 'template/myfriends.html'
         }
       }
     });
@@ -264,7 +463,7 @@ app.config(function($stateProvider, $urlRouterProvider){
       url: '/recherchePlaces',
       views: {
         'side-menu21': {
-          templateUrl: 'template/recherchePLaces.html'
+          templateUrl: 'template/recherchePlaces.html'
         }
       }
     });
@@ -274,6 +473,33 @@ app.config(function($stateProvider, $urlRouterProvider){
       views: {
         'side-menu21': {
           templateUrl: 'template/placeDescription.html'
+        }
+      }
+    });
+    
+    $stateProvider.state('menu.eventDescription', {
+      url: '/eventDescription',
+      views: {
+        'side-menu21': {
+          templateUrl: 'template/eventDescription.html'
+        }
+      }
+    });
+    
+    $stateProvider.state('menu.memberProfile', {
+      url: '/memberProfile',
+      views: {
+        'side-menu21': {
+          templateUrl: 'template/memberProfile.html'
+        }
+      }
+    });
+    
+    $stateProvider.state('menu.message', {
+      url: '/message',
+      views: {
+        'side-menu21': {
+          templateUrl: 'template/message.html'
         }
       }
     });

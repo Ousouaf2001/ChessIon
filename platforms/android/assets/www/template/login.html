@@ -7,20 +7,25 @@
               </div>
             </div>
             <div class="list">
-               
-              <label class="item item-input input-login">
-                <i class="icon ion-email placeholder-icon icon-login"></i>
-                <input type="text" placeholder="Email" id="email" ng-model="email" name="email">
-              </label>
-              <label class="item item-input input-login">
-                <i class="icon ion-locked placeholder-icon icon-login"></i>
-                <input type="password" placeholder="Password" id="password" ng-model="password" name="password">
-              </label>
-              <!--<ion-checkbox ng-model="filter.yellow" class="checkbox-login">Remember Me</ion-checkbox>-->
-             <a ui-sref="menu.profile">
-              <button class="button button-block btn-login">Login with Email</button>
-                </a>
+            <form name="loginForm">
+                  <label class="item item-input input-login">
+                    <i class="icon ion-email placeholder-icon icon-login"></i>
+                      <!-- modifier par hosni-->
+                    <input type="text" placeholder="Email" id="email" ng-model="loginparams.email" required>
+                  </label>
+                  <label class="item item-input input-login">
+                    <i class="icon ion-locked placeholder-icon icon-login"></i>
+                      <!-- modifier par hosni-->
+                    <input type="password" class="form-control" placeholder="Password" id="password" ng-model="loginparams.password" required>
+                  </label>
+                  <!--<ion-checkbox ng-model="filter.yellow" class="checkbox-login">Remember Me</ion-checkbox>-->
+                
+              <!-- modifier par hosni-->
+                 <button ng-click="memberConnect()" class="button button-block btn-login" ng-disabled="loginForm.$invalid || loginForm.$pending">Login with Email 2</button>
+                
+                </form>
             </div>
+
             <a ui-sref="register">
                 <h6 class="titre-login text-center">NEW ? SIGN UP HERE</h6>
             </a>
