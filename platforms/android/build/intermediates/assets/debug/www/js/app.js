@@ -222,7 +222,7 @@ app=angular.module('starter', ['ionic','ngCordova'])
                  $scope.notif = [];
                    for(var i=$scope.notif.length;i<(response.nb_total);i++){
                       $scope.notif.push({
-                                      name:response.notifications[i].sender_last_name,
+                                      name:response.notifications[i].sender_name,
                                       lastname:response.notifications[i].sender_last_name,
                                       date:response.notifications[i].date,
                                       texte:response.notifications[i].message,
@@ -234,7 +234,7 @@ app=angular.module('starter', ['ionic','ngCordova'])
                 $scope.notif = [];
                 for(var i=$scope.notif.length;i<(response.nb_total);i++){
                     $scope.notif.push({
-                                    name:response.notifications[i].sender_last_name,
+                                    name:response.notifications[i].sender_name,
                                       lastname:response.notifications[i].sender_last_name,
                                       date:response.notifications[i].date,
                                       texte:response.notifications[i].message,
@@ -278,7 +278,7 @@ app=angular.module('starter', ['ionic','ngCordova'])
                  $scope.meet = [];
                    for(var i=$scope.meet.length;i<(response.nb_total);i++){
                       $scope.meet.push({
-                                      name:response.meeting_places[i].adress,
+                                      name:response.meeting_places[i].name,
                                       adresse:response.meeting_places[i].adress,
                                       image:response.meeting_places[i].type_image
                                     }); 
@@ -288,7 +288,7 @@ app=angular.module('starter', ['ionic','ngCordova'])
                 $scope.meet = [];
                 for(var i=$scope.meet.length;i<(response.nb_total);i++){
                     $scope.meet.push({
-                                      name:response.meeting_places[i].adress,
+                                      name:response.meeting_places[i].name,
                                       adresse:response.meeting_places[i].adress,
                                       image:response.meeting_places[i].type_image
                                   });  

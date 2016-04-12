@@ -258,7 +258,7 @@ app=angular.module('starter', ['ionic','ngCordova'])
     $scope.meet=[
         
     ];
-
+   
     //notification show
     var afficheMeetingPlace=function(){
     $scope.identifiant = localStorage.getItem('identifiant');
@@ -275,7 +275,7 @@ app=angular.module('starter', ['ionic','ngCordova'])
 
             
             if($scope.meet.length < response.nb_total){
-                 $scope.meet = [];
+                 
                    for(var i=$scope.meet.length;i<(response.nb_total);i++){
                       $scope.meet.push({
                                       name:response.meeting_places[i].name,
@@ -285,7 +285,7 @@ app=angular.module('starter', ['ionic','ngCordova'])
                       
                     }
             }else if($scope.meet.length>response.nb_total){
-                $scope.meet = [];
+                
                 for(var i=$scope.meet.length;i<(response.nb_total);i++){
                     $scope.meet.push({
                                       name:response.meeting_places[i].name,
@@ -302,6 +302,7 @@ app=angular.module('starter', ['ionic','ngCordova'])
         
         
     }
+    affichePublications();
     setInterval(afficheMeetingPlace,4000);
 
     // delete meeting place
